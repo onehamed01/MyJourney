@@ -98,19 +98,27 @@ Topics covered during Python Refresh:
 
 ---
 
+
+
 ## Solid Python
 
 Solid Python is the current stage of this journey. The focus is on understanding Python more deeply through practical design, not just learning syntax.
 
 The OOP work has been developed incrementally in one evolving project. I pushed the current full version of the code rather than creating a separate commit for every small edit.
 
-### OOP — Current Progress
+### OOP — Fundamental
 
 1. `Product` — Class structure, instance state, class attributes, class methods, stock control, and pricing behaviour.
 2. `OrderItem` — Composition with `Product`, quantity, and line-total calculation.
 3. `Order` — Composition with multiple order items and full-order total calculation.
 4. `DiscountProduct` — Inheritance, `super()`, additional state, and method overriding.
 5. Polymorphic pricing — Different product types responding to the same `final_price()` interface.
+
+Filename is:
+
+```
+SolidPython/OopIntro.py
+```
 
 ### Theory
 
@@ -135,13 +143,5 @@ Topics covered so far during OOP:
 - Class responsibilities
 - Object design and class relationships
 
-### Current Position
 
-```text
-Python Refresh ✅
-   ↓
-Solid Python
-   └── OOP ← CURRENT
-```
 
-OOP is still in progress. After the remaining object-design work, the next step will be practical OOP reinforcement projects before continuing through the rest of Solid Python.
