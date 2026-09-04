@@ -5,32 +5,37 @@ class BankAccount:
         self._balance = balance
         self.owner = owner
     
-    def change_bank_name(self, bankname: str) -> None:
-        self.bank_name = bankname
+    @classmethod
+    def change_bank_name(cls, bankname: str) -> None:
+        cls.bank_name = bankname
 
     @property
     def balance(self) -> float:
         return self._balance
     
-    def deposit(self, amount:float) -> str:
+    def deposit(self, amount:float) -> bool:
         if amount <= 0:
-            return "Please insert a valid amount!"
+            return False
         
         self._balance += amount
-        return f"£{amount} has been deposit"
+        return True
     
-    def withdraw(self, amount: float) -> str:
-        if self._balance < amount:
-            return "The amount is more than your balance!"
-        elif amount <= 0 :
-            return "Please insert a valid amount!"
+    def withdraw(self, amount: float) -> bool:
+        if self._balance < amount or amount <= 0:
+            return False
 
         self._balance -= amount
-        return f"£{amount} has deduce from your account"
+        return True
+
+    @property
+    def is_empty(self) -> bool:
+        return self._balance == 0
         
 hami = BankAccount(27000.00, 'Hami')
-hami.withdraw(500)
+hami.deposit(2000)
 print(hami.balance)
-hami.withdraw(2000)
-print(hami.balance)
-hami.change_bank_name('LLOYDS')
+print(hami.is_empty)
+hami.withdraw(9800000)
+print(hami.is_empty)
+BankAccount.change_bank_name("LLOYDS")
+print(BankAccount.bank_name)
