@@ -65,3 +65,4 @@ orders_list = [candle, discount_rosie, rosie, discount_candle]
 
 for item in orders_list:
     print(item.final_price())
+    
