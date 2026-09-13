@@ -36,12 +36,44 @@ class Customer:
     def __init__(self, customer_name, customer_id) -> None:
         self.customer_name = customer_name
         self.customer_id = customer_id
-        self.rented_vehicles:Vehicle = list[Vehicle]
+        self.rented_vehicles_list:Vehicle = list[Vehicle]
 
+    @classmethod
+    def active_rental_limit(cls) -> int:
+        return cls.active_rental_limit
     
+    def rent_car(self, vehicle: Vehicle) -> bool:
+        rent_car_method = vehicle.rented_car()
+        if rent_car_method and len(self.rented_vehicles_list) <= self.active_rental_limit:
+            self.rented_vehicles_list.append(vehicle)
+            return rent_car_method
+        
+    def return_car(self, vehicle: Vehicle) -> bool:
+        return_car_method = vehicle.return_car()
+        if not return_car_method:
+            self.return_car()
+            return return_car_method 
+
 
 class PremiumCustomer(Customer):
     active_rental_limit = 4
+    def __init__(self, customer_name, customer_id) -> None:
+        super().__init__(customer_name, customer_id)
+        self.rented_vehicles_list = list[Vehicle]
+
+    def rent_car(self, vehicle: Vehicle) -> bool:
+        if len(self.rented_vehicles_list) <= self.active_rental_limit:
+            return super().rent_car(vehicle)
 
 class Company:
     pass
+
+porsche = Vehicle('Porsche', 'Macan', 1200, True)
+toyota = Vehicle('Toyota', 'Yaris', 340, True)
+rolls_royce = LuxuryVehicle("Rolls-Royce", 'Culinan', 3600, True, 14)
+benz = Vehicle('Mercedes-benz', 'SL 63', 639, True)
+aston_martin = LuxuryVehicle('Aston Martin', 'DB 12', 2099, True, 33)
+
+# Customers
+hami = Customer('Hami Vand', 1002)
+print(hami.rent_car(porsche))
